@@ -1,0 +1,146 @@
+[
+  {
+    "type": "gotoUrl",
+    "config": {
+      "url": "https://coinlist.co/login",
+      "timeout": 30000,
+      "remark": ""
+    }
+  },
+  {
+    "type": "waitForSelector",
+    "config": {
+      "selector": "#user_email",
+      "serial": 1,
+      "isShow": "1",
+      "timeout": 30000,
+      "remark": ""
+    }
+  },
+  {
+    "type": "useExcel",
+    "config": {
+      "path": "C:\\blaBlaBla\\2fa.xlsx",
+      "variableList": [
+        "serial_number",
+        "login",
+        "pass",
+        "fromExecl"
+      ],
+      "remark": ""
+    }
+  },
+  {
+    "type": "inputContent",
+    "config": {
+      "selector": "#user_email",
+      "selectorType": "selector",
+      "element": "",
+      "serial": 1,
+      "intervals": 300,
+      "content": "${login}",
+      "isRandom": "0",
+      "randomContent": "${login}",
+      "remark": ""
+    }
+  },
+  {
+    "type": "inputContent",
+    "config": {
+      "selector": "#user_password",
+      "selectorType": "selector",
+      "element": "",
+      "serial": 1,
+      "intervals": 300,
+      "content": "${pass}",
+      "isRandom": "0",
+      "randomContent": "${pass}",
+      "remark": ""
+    }
+  },
+  {
+    "type": "click",
+    "config": {
+      "selector": "#user_remember_me",
+      "selectorType": "selector",
+      "element": "",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "serialMin": 1,
+      "serialMax": 50,
+      "button": "left",
+      "type": "click",
+      "remark": ""
+    }
+  },
+  {
+    "type": "waitTime",
+    "config": {
+      "timeoutType": "fixedValue",
+      "timeout": 3000,
+      "timeoutMin": 1000,
+      "timeoutMax": 300000,
+      "remark": ""
+    }
+  },
+  {
+    "type": "waitForSelector",
+    "config": {
+      "selector": "#multi_factor_authentication_totp_otp_attempt",
+      "serial": 1,
+      "isShow": "1",
+      "timeout": 30000,
+      "remark": ""
+    }
+  },
+  {
+    "type": "get2faCode",
+    "config": {
+      "secret": "${fromExecl}",
+      "variable": "fa2",
+      "remark": ""
+    }
+  },
+  {
+    "type": "inputContent",
+    "config": {
+      "selector": "#multi_factor_authentication_totp_otp_attempt",
+      "selectorType": "selector",
+      "element": "",
+      "serial": 1,
+      "intervals": 300,
+      "content": "",
+      "isRandom": "1",
+      "randomContent": "${fa2}",
+      "remark": "",
+      "serialType": "fixedValue",
+      "serialMin": 1,
+      "serialMax": 50
+    }
+  },
+  {
+    "type": "click",
+    "config": {
+      "selector": "[type='submit']",
+      "selectorType": "selector",
+      "element": "",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "serialMin": 1,
+      "serialMax": 50,
+      "button": "left",
+      "type": "click",
+      "remark": ""
+    }
+  },
+  {
+    "type": "waitTime",
+    "config": {
+      "timeoutType": "fixedValue",
+      "timeout": 10000,
+      "timeoutMin": 1000,
+      "timeoutMax": 300000,
+      "remark": ""
+    }
+  }
+]
